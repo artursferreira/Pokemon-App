@@ -8,7 +8,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.artur.pokemonapp.data.Status
+import com.artur.pokemonapp.data.Result
 import com.artur.pokemonapp.data.local.PokemonItem
 import com.artur.pokemonapp.databinding.FragmentPokemonListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -46,18 +46,18 @@ class PokemonListFragment : Fragment(), PokemonItemAdapter.OnItemClickListener {
     private fun setupObservers() {
         viewModel.pokemonLiveData.observe(viewLifecycleOwner, {
             when(it.status) {
-                Status.LOADING -> {
+                Result.Status.LOADING -> {
                     binding.pokemonRecyclerview.visibility = GONE
                     binding.pokemonError.visibility = GONE
                     binding.progressCircular.visibility = VISIBLE
                 }
-                Status.SUCCESS -> {
+                Result.Status.SUCCESS -> {
                     adapter.submitList(it.data)
                     binding.progressCircular.visibility = GONE
                     binding.pokemonError.visibility = GONE
                     binding.pokemonRecyclerview.visibility = VISIBLE
                 }
-                Status.ERROR -> {
+                Result.Status.ERROR -> {
                     binding.progressCircular.visibility = GONE
                     binding.pokemonRecyclerview.visibility = GONE
                     binding.pokemonError.visibility = VISIBLE
