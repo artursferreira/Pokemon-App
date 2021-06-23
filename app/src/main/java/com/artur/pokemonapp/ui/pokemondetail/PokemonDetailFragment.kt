@@ -1,4 +1,4 @@
-package com.artur.pokemonapp.pokemondetail
+package com.artur.pokemonapp.ui.pokemondetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.artur.pokemonapp.data.PokemonItem
+import com.artur.pokemonapp.data.local.PokemonItem
 import com.artur.pokemonapp.databinding.FragmentPokemonDetailBinding
 import com.bumptech.glide.Glide
 

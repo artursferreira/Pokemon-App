@@ -1,13 +1,19 @@
-package com.artur.pokemonapp.pokemonlist
+package com.artur.pokemonapp.ui.pokemonlist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.artur.pokemonapp.data.PokemonItem
+import com.artur.pokemonapp.R
+import com.artur.pokemonapp.data.Result
+import com.artur.pokemonapp.data.local.PokemonItem
 import com.artur.pokemonapp.databinding.FragmentPokemonListBinding
+import com.google.android.material.snackbar.Snackbar
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PokemonListFragment : Fragment(), PokemonItemAdapter.OnItemClickListener {
 
@@ -15,6 +21,8 @@ class PokemonListFragment : Fragment(), PokemonItemAdapter.OnItemClickListener {
     private val binding get() = _binding!!
 
     private val adapter = PokemonItemAdapter(this)
+
+    private val viewModel : PokemonListViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,17 +37,32 @@ class PokemonListFragment : Fragment(), PokemonItemAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.pokemonRecyclerview.adapter = adapter
-        val list = mutableListOf<PokemonItem>()
-        list.add(PokemonItem("001", "Bulbasaur", "https://img.pokemondb.net/artwork/bulbasaur.jpg"))
-        list.add(PokemonItem("002", "Ivysaur", "https://img.pokemondb.net/artwork/ivysaur.jpg"))
-        list.add(PokemonItem("003", "Venusaur", "https://img.pokemondb.net/artwork/venusaur.jpg"))
-        adapter.submitList(list)
-
+        setupObservers()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupObservers() {
+        viewModel.pokemonLiveData.observe(viewLifecycleOwner, {
+            when(it.status) {
+                Result.Status.LOADING -> {
+                    binding.pokemonRecyclerview.visibility = GONE
+                    binding.progressCircular.visibility = VISIBLE
+                }
+                Result.Status.SUCCESS -> {
+                    adapter.submitList(it.data)
+                    binding.progressCircular.visibility = GONE
+                    binding.pokemonRecyclerview.visibility = VISIBLE
+                }
+                Result.Status.ERROR -> {
+                    binding.progressCircular.visibility = GONE
+                    Snackbar.make(binding.root, getString(R.string.pokemon_error), Snackbar.LENGTH_LONG).show()
+                }
+            }
+        })
     }
 
     override fun onItemClicked(pokemon: PokemonItem) {
