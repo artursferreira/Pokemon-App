@@ -7,11 +7,7 @@ import com.artur.pokemonapp.util.Constants.Companion.BASE_URL
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val pokemonModule = module {
-
-    single { provideRetrofit(BASE_URL) }
-
-    single { createWebService<PokemonService>(retrofit = get()) }
+val repositoryModule = module {
 
     single {
         PokemonRepository(
@@ -19,7 +15,5 @@ val pokemonModule = module {
             service = get()
         )
     }
-
-    viewModel { PokemonListViewModel(pokemonRepository = get()) }
 
 }

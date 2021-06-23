@@ -8,9 +8,11 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.artur.pokemonapp.R
 import com.artur.pokemonapp.data.Result
 import com.artur.pokemonapp.data.local.PokemonItem
 import com.artur.pokemonapp.databinding.FragmentPokemonListBinding
+import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PokemonListFragment : Fragment(), PokemonItemAdapter.OnItemClickListener {
@@ -48,19 +50,16 @@ class PokemonListFragment : Fragment(), PokemonItemAdapter.OnItemClickListener {
             when(it.status) {
                 Result.Status.LOADING -> {
                     binding.pokemonRecyclerview.visibility = GONE
-                    binding.pokemonError.visibility = GONE
                     binding.progressCircular.visibility = VISIBLE
                 }
                 Result.Status.SUCCESS -> {
                     adapter.submitList(it.data)
                     binding.progressCircular.visibility = GONE
-                    binding.pokemonError.visibility = GONE
                     binding.pokemonRecyclerview.visibility = VISIBLE
                 }
                 Result.Status.ERROR -> {
                     binding.progressCircular.visibility = GONE
-                    binding.pokemonRecyclerview.visibility = GONE
-                    binding.pokemonError.visibility = VISIBLE
+                    Snackbar.make(binding.root, getString(R.string.pokemon_error), Snackbar.LENGTH_LONG).show()
                 }
             }
         })

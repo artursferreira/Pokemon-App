@@ -1,8 +1,7 @@
 package com.artur.pokemonapp
 
 import android.app.Application
-import com.artur.pokemonapp.di.dbModule
-import com.artur.pokemonapp.di.pokemonModule
+import com.artur.pokemonapp.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -13,7 +12,7 @@ class PokemonApp : Application() {
 
         startKoin {
             androidContext(applicationContext)
-            modules(dbModule, pokemonModule)
+            modules(dbModule, networkModule, repositoryModule, viewModelModule)
         }
     }
 }

@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Pokemon App</string>
-    <string name="pokemon_error">No pokemons found! :( \n\n Try again later.</string>
+    <string name="pokemon_error">No pokemons found! :( Try again later.</string>
 </resources>
