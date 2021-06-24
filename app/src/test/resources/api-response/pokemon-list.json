@@ -1,0 +1,54 @@
+{
+  "pokemons": [
+    {
+      "id": "001",
+      "name": "Bulbasaur",
+      "imagePath": "https://img.pokemondb.net/artwork/bulbasaur.jpg"
+    },
+    {
+      "id": "002",
+      "name": "Ivysaur",
+      "imagePath": "https://img.pokemondb.net/artwork/ivysaur.jpg"
+    },
+    {
+      "id": "003",
+      "name": "Venusaur",
+      "imagePath": "https://img.pokemondb.net/artwork/venusaur.jpg"
+    },
+    {
+      "id": "004",
+      "name": "Charmander",
+      "imagePath": "https://img.pokemondb.net/artwork/charmander.jpg"
+    },
+    {
+      "id": "005",
+      "name": "Charmeleon",
+      "imagePath": "https://img.pokemondb.net/artwork/charmeleon.jpg"
+    },
+    {
+      "id": "006",
+      "name": "Charizard",
+      "imagePath": "https://img.pokemondb.net/artwork/charizard.jpg"
+    },
+    {
+      "id": "007",
+      "name": "Squirtle",
+      "imagePath": "https://img.pokemondb.net/artwork/squirtle.jpg"
+    },
+    {
+      "id": "008",
+      "name": "Wartortle",
+      "imagePath": "https://img.pokemondb.net/artwork/wartortle.jpg"
+    },
+    {
+      "id": "009",
+      "name": "Blastoise",
+      "imagePath": "https://img.pokemondb.net/artwork/blastoise.jpg"
+    },
+    {
+      "id": "010",
+      "name": "Caterpie",
+      "imagePath": "https://img.pokemondb.net/artwork/caterpie.jpg"
+    }
+  ]
+}

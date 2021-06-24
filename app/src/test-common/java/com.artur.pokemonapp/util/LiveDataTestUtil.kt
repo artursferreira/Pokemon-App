@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.artur.pokemonapp.db
+package com.artur.pokemonapp.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
