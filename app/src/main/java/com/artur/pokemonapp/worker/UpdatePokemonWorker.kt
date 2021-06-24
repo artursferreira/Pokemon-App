@@ -2,7 +2,6 @@ package com.artur.pokemonapp.worker
 
 import android.content.Context
 import androidx.work.CoroutineWorker
-import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.artur.pokemonapp.repository.PokemonRepository
 import org.koin.core.component.KoinComponent
