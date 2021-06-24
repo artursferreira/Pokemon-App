@@ -1,4 +1,4 @@
-package com.artur.pokemonapp.db
+package com.artur.pokemonapp.util
 
 import com.artur.pokemonapp.data.local.PokemonItem
 
